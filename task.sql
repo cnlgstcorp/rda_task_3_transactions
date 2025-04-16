@@ -1,14 +1,14 @@
 USE ShopDB;
 
--- Добавляем заказ вне транзакции
+-- Начинаем транзакцию
+START TRANSACTION;
+
+-- Создаём заказ
 INSERT INTO Orders (CustomerID, Date)
 VALUES (1, '2023-01-01');
 
 -- Сохраняем ID созданного заказа
 SET @order_id = LAST_INSERT_ID();
-
--- Начинаем транзакцию
-START TRANSACTION;
 
 -- Уменьшаем количество товара на складе
 UPDATE Products
